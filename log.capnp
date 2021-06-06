@@ -1301,6 +1301,76 @@ struct ManagerState {
   }
 }
 
+# addition
+struct FCWData {
+  ttc @0 :Float32;
+  ttcCounter @1 :UInt32;
+
+  vLeadMax @2 :Float32;
+  vLeadMaxCounter @3 :UInt32;
+
+  vEgo @4 :Float32;
+  vLead @5 :Float32;
+  vEgoLeadCounter @6 :UInt32;
+
+  leadSeen @7 :Float32;
+
+  yLead @8 :Float32;
+  yLeadCounter @9 :UInt32;
+
+  vLatLead @10 :Float32;
+  vLatLeadCounter @11 :UInt32;
+
+  aThr @12 :Float32;
+  aDelta @13 :Float32;
+  lastMinA @14 :Float32;
+
+  aEgo @15 :Float32;
+  aLead @16 :Float32;
+  xLead @17 :Float32;
+
+  blinkers @18 :UInt32;
+  blinkersCounter @19 :Float32;
+
+  vEgoCounter @20 :UInt32;
+
+  fcwLead @21 :UInt32;
+  futureFcw @22 :UInt32;
+
+  lastFcwTime @23 :Float32;
+  curTime @24 :Float32;
+
+  lastFcwTimeNoReset @25 :Float32;
+  fcwTotalTimes @26 :Float32;
+}
+
+# addition
+struct RadardData {
+  mode @0 :UInt64;
+  leadRadar @1 :LeadData;
+  leadVision @2 :LeadData;
+
+  struct LeadData {
+    dRel @0 :Float32;
+    yRel @1 :Float32;
+    vRel @2 :Float32;
+    aRel @3 :Float32;
+    vLead @4 :Float32;
+    dPath @6 :Float32;
+    vLat @7 :Float32;
+    vLeadK @8 :Float32;
+    aLeadK @9 :Float32;
+    fcw @10 :Bool;
+    status @11 :Bool;
+    aLeadTau @12 :Float32;
+    modelProb @13 :Float32;
+    radar @14 :Bool;
+
+    aLeadDEPRECATED @5 :Float32;
+  }
+}
+
+
 struct Event {
   logMonoTime @0 :UInt64;  # nanoseconds
   valid @67 :Bool = true;
@@ -1397,5 +1467,9 @@ struct Event {
     kalmanOdometryDEPRECATED @65 :Legacy.KalmanOdometry;
     gpsLocationDEPRECATED @21 :GpsLocationData;
     uiLayoutStateDEPRECATED @57 :Legacy.UiLayoutState;
+
+    # addition
+    fcwData @79 :FCWData;
+    radardData @80 :RadardData;
   }
 }
